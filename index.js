@@ -1,18 +1,18 @@
-const todosArr = [];
-
 class Todos {
+	todoList = [];
+
 	set add(title) {
-		this.todo = {
-			id: todosArr.length + 1,
+		const newTodo = {
+			id: this.todoList.length + 1,
 			title: title,
 			completed: false,
 		};
 
-		todosArr.push(this.todo);
+		this.todoList.push(newTodo);
 	}
 
 	set complete(id) {
-		const completing = todosArr.find((todo) => {
+		const completing = this.todoList.find((todo) => {
 			return todo.id === id;
 		});
 
@@ -20,26 +20,26 @@ class Todos {
 	}
 
 	set remove(id) {
-		const removingIndex = todosArr.findIndex((todo) => {
+		const removingIndex = this.todoList.findIndex((todo) => {
 			return todo.id === id;
 		});
 
-		todosArr.splice(removingIndex, 1);
+		this.todoList.splice(removingIndex, 1);
 	}
 
 	removeAll() {
-		todosArr.length = 0;
+		this.todoList.length = 0;
 	}
 
 	showCompleted() {
-		const completedTodos = todosArr.filter((todo) => {
+		const completedTodos = this.todoList.filter((todo) => {
 			return todo.completed === true;
 		});
 		console.log(completedTodos);
 	}
 
 	showActive() {
-		const activeTodos = todosArr.filter((todo) => {
+		const activeTodos = this.todoList.filter((todo) => {
 			return todo.completed === false;
 		});
 		console.log(activeTodos);
@@ -69,4 +69,4 @@ todos.remove = 3;
 // todos.showActive();
 // ********************************
 
-console.log(todosArr);
+console.table(todos.todoList);
